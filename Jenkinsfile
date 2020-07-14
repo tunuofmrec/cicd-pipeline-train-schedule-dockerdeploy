@@ -4,13 +4,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                echo env.BRANCH_NAME
+                echo branch
                 sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
         stage('Build Docker Image') {
-                                  steps { echo env.BRANCH_NAME
+                                  steps { echo branch
                 script {
                     app = docker.build("tunuofmrec/train-schedule")
                     app.inside {
