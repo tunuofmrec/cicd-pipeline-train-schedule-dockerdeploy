@@ -2,15 +2,14 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            echo "$branch"
-            steps {
+                    steps {
                 echo 'Running build automation'
                 sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
         stage('Build Docker Image') {
-                                  steps { echo "$branch"
+                                  steps { 
                 script {
                     app = docker.build("tunuofmrec/train-schedule")
                     app.inside {
