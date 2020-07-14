@@ -10,8 +10,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                beforeAgent true
-                branch 'master'
+                  branch 'master'
             }
             steps {
                 script {
